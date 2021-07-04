@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+$dark-accent-3: #A454C9;
+$dark-accent-2: #6F2D8D;
+$dark-accent-1: #31143e;
+$dark-1: #2F2F2F;
+$dark-2: #474747;
+$dark-3: #707070;
+$light-3: #aaa;
+$light-2: #e6eeef;
+$light-1: #F9F9F9;
+$light-accent-1: #78A3AD;
+$success: #9EE37D;
+$warn: #F2C14E;
+$error: #BA274A;
+
+@mixin card {
+  border-radius: 20px;
+  box-shadow: 2em 3em 10em .01em rgba(0, 0, 0, .2);
+  padding: 1em 2em;
+}
+
+@mixin spin($speed) {
+  animation: App-logo-spin infinite $speed linear;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
