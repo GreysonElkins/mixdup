@@ -4,16 +4,10 @@ export type RouteType = {
   component: React.FC
   inNav?: {
     name: string
+    icon?: string
     to?: string
   }
 }
 
-export enum Day {
-  SUN = 0,
-  MON = 1,
-  TUE = 2,
-  WED = 3,
-  THU = 4,
-  FRI = 5,
-  SAT = 6,
-}
+export type { SpotifyTokens, UserTokenUpdate, UserContextType } from './contexts.d'
+export { Day } from './contexts.d'
