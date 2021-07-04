@@ -13,7 +13,7 @@ $light-1: #F9F9F9;
 $light-accent-1: #78A3AD;
 $success: #9EE37D;
 $warn: #F2C14E;
-$error: #BA274A;
+$error: #e72653;
 
 @mixin card {
   border-radius: 20px;
@@ -23,6 +23,31 @@ $error: #BA274A;
 
 @mixin spin($speed) {
   animation: App-logo-spin infinite $speed linear;
+}
+
+@mixin clearTextInput {
+  width: 96%;
+  margin: 0 auto 1em;
+  padding: .4em;
+  border: solid 1px $dark-2;
+  border-radius: 5px;
+  background: none;
+  color: $light-1;
+  font-size: 20px;
+  box-shadow: inset 0px 0px 8px 0px rgba(170, 170, 170, 0.2);
+
+  &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: $light-3;
+    opacity: 1; /* Firefox */
+  }
+
+  &::-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: $light-3;
+  }
+
+  &::-ms-input-placeholder { /* Microsoft Edge */
+    color: $light-3;
+  }
 }
 
 @keyframes App-logo-spin {
