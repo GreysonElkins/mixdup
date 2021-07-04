@@ -3,7 +3,7 @@ import { BrowserRouter } from 'react-router-dom'
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 
-import App from './components/App/App';
+import { App } from 'components';
 import './index.scss';
 
 ReactDOM.render(

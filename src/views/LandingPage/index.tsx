@@ -2,7 +2,7 @@ import React from 'react'
 import { RouteType } from 'types'
 
 const LandingPage: React.FC = () => {
-  return <></>
+  return <>Hello landing</>
 } 
 
 const landingPage: RouteType = {
