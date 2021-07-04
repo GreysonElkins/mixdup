@@ -1,8 +1,10 @@
 import React from 'react'
 import { RouteType } from 'types'
 
+import { CalendarGraphic } from 'components'
+
 const LandingPage: React.FC = () => {
-  return <>Hello landing</>
+  return <CalendarGraphic />
 } 
 
 const landingPage: RouteType = {
