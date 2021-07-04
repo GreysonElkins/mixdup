@@ -12,3 +12,6 @@ export const ruleOfTheDay = (day: Day | number): 'vote' | 'submit' => {
   console.error('ruleOfTheDay encountered an unexpected value')
   return 'vote'
 }
+
+export { default as firebase, auth } from './firebase/firebaseConfig'
+export { signIn, disconnectUser } from './firebase/user'
