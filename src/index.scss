@@ -17,3 +17,56 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.cta-1, .cta-2, .cta-3 {
+  border: none;
+  border-radius: 10px;
+  color: $dark-1;
+  font-family: 'Lato', sans-serif;
+  font-size: 18px !important;
+  height: min-content;
+  margin: .5em;
+  padding: 2px .5em 4px;
+  text-transform: lowercase;
+  color: $light-1;
+  cursor: pointer;
+  white-space: nowrap;
+  font-size: 16px;
+
+  &:hover {
+    font-style: italic;
+  }
+
+  &:active {
+    font-size: 1.05em;
+  }
+}
+
+.cta-1 {
+  background-color: $dark-accent-2;
+  color: $light-1
+}
+
+.cta-2 {
+  background-color: $light-accent-1;
+  color: $light-1
+}
+
+.cta-3 {
+  background-color: $light-3;
+  opacity: .5;
+}
+
+.cta-4 {
+  background: none;
+  border: none;
+  color: $light-accent-1;
+  font-weight: 550;
+  text-transform: lowercase;
+  cursor: pointer;
+  font-size: 16px;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
