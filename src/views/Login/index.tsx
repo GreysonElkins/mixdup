@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom'
 import { RouteType } from 'types'
 import { useUser } from 'hooks'
 import { LoginSignUpForm } from 'components'
+import { SpinningLoader } from 'style'
 import './Login.scss'
 
 export const LoginPage: React.FC = () => {
@@ -13,11 +14,7 @@ export const LoginPage: React.FC = () => {
   
   return (
   <main className="Login">
-    <img 
-      src='/headphones.svg' 
-      className="App-logo" 
-      alt="the app logo, a spinning pair of headphones"
-    />
+    <SpinningLoader />
     <LoginSignUpForm />
   </main>
 )}

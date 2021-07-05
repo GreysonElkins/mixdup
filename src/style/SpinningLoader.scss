@@ -1,0 +1,19 @@
+@import 'style/variables.scss';
+
+.spinning-loader {
+  @include spin(20s);
+}
+
+.loading-wrapper {
+  width: 100vw;
+  min-width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  > img {
+    width: 200px;
+    height: 200px
+  }
+}

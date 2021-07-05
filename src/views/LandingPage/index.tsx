@@ -1,10 +1,15 @@
 import React from 'react'
 import { RouteType } from 'types'
+import { faHome } from '@fortawesome/free-solid-svg-icons'
 
-import { CalendarGraphic } from 'components'
-
+import { CalendarGraphic, PlaylistGallery } from 'components'
 const LandingPage: React.FC = () => {
-  return <CalendarGraphic />
+  return (
+    <>
+      <CalendarGraphic />
+      {/* <PlaylistGallery /> */}
+    </>
+  )
 } 
 
 const landingPage: RouteType = {
@@ -13,7 +18,8 @@ const landingPage: RouteType = {
   exact: true,
   inNav: {
     name: 'home',
-  }
+    icon: faHome
+  },
 }
 
 export default landingPage

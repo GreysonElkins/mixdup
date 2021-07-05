@@ -15,3 +15,4 @@ export const ruleOfTheDay = (day: Day | number): 'vote' | 'submit' => {
 
 export { default as firebase, auth } from './firebase/firebaseConfig'
 export { signIn, disconnectUser } from './firebase/user'
+export { getAllPlaylists } from './mixdup/playlist'

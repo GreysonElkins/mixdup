@@ -6,10 +6,8 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-  
-  img {
-    @include spin(20s);
+
+  > img {
     margin-bottom: 60px;
-    margin-top: -60px;
   }
 }

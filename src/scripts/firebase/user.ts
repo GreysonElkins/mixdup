@@ -5,6 +5,7 @@ type AuthenticatingUser = { email: string; password: string; username: string; i
 
 const signInErrors = (error: any) => {
   switch (error?.code) {
+    // auth/invalid-email
     case 'auth/email-already-in-use':
       toast.dark('That email is already in use', { toastId: 'existing email' })
       break
@@ -14,6 +15,8 @@ const signInErrors = (error: any) => {
     case 'auth/user-not-found':
       toast.dark("That user wasn't found", { toastId: 'no user' })
       break
+    default:
+      toast.dark(error?.message)
   }
   console.error(error)
 }
@@ -38,30 +41,3 @@ export const disconnectUser = () => {
     .signOut()
     .catch((error) => console.log(error))
 }
-
-// export const getUserName = async (userId: string) => {
-//   const snapshot = await firebase
-//     .database()
-//     .ref()
-//     .child('users')
-//     .child(userId)
-//     .child('username')
-//     .get()
-//   return snapshot.exists() && snapshot.val()
-// }
-
-// export const getUserSubmissions = async (id: string) => {
-//   try {
-//     const snapshot = await firebase
-//       .database()
-//       .ref('submission')
-//       .orderByChild('userId')
-//       .equalTo(id)
-//       .get()
-//     return snapshot.exists() && snapshot.val()
-//   } catch (error) {
-//     console.error(error)
-//   }
-// }
-
-

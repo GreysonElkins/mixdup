@@ -1,10 +1,12 @@
+import { IconDefinition } from '@fortawesome/free-solid-svg-icons'
+
 export type RouteType = {
   path: string
   exact?: boolean
   component: React.FC
   inNav?: {
     name: string
-    icon?: string
+    icon: IconDefinition
     to?: string
   }
 }

@@ -6,13 +6,10 @@ export type SpotifyTokens = {
 export type UserTokenUpdate = (value: SpotifyTokens, saveToFirebase?: boolean) => void
 
 export interface UserContextType {
+  loading: boolean
   id: string
   isLoggedIn: boolean
-  spotify_tokens: SpotifyTokens
-  updateUserTokens: UserTokenUpdate
   logout: () => void
-  incomingTokens: boolean
-  clearSpotifyTokens: () => void
 }
 
 export enum Day {

@@ -1,34 +1,13 @@
 import { firebase } from 'scripts'
 import { SpotifyTokens, UserTokenUpdate } from 'types'
+import { toast } from 'react-toastify'
 
-export const getTokensFromFirebase = (id: string, updateUserTokens: UserTokenUpdate) => {
-  firebase
-    .database()
-    .ref()
-    .child('users')
-    .child(id)
-    .child('spotify_tokens')
-    .get()
-    .then((snapshot) => {
-      if (snapshot.exists()) {
-        //   const data = snapshot.val()
-      }
-    })
-    .catch((error) => {
-      console.error(error)
-    })
-}
-
-export const saveTokensToFirebase = (id: string, tokens: SpotifyTokens) => {
-  firebase
-    .database()
-    .ref('users/' + id + '/spotify_tokens')
-    .set({ ...tokens })
-}
-
-export const clearSpotifyTokensFromFirebase = async (userId: string) => {
-  return await firebase
-    .database()
-    .ref('users/' + userId + '/spotify_tokens')
-    .set({ access_token: '', refresh_token: '' })
+export const getAllPlaylistsFromFirebase = async () => {
+  try {
+    const snapshot = await firebase.database().ref().child('playlists').get()
+    return snapshot.exists() && snapshot.val()
+  } catch (error) {
+    console.error(error)
+    toast.dark('Something went wrong getting all of the playlists')
+  }
 }
