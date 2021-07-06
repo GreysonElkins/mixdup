@@ -39,5 +39,5 @@ export const disconnectUser = () => {
   firebase
     .auth()
     .signOut()
-    .catch((error) => console.log(error))
+    .catch((error) => console.error(error))
 }
