@@ -18,9 +18,10 @@ const App: React.FC = () => {
 
   return (
     <>
-      <Switch>{RouteMap}</Switch>
+      <main>
+        <Switch>{RouteMap}</Switch>
+      </main>
       <Navigation />
-      
     </>
   )
 }
