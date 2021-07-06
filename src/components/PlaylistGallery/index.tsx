@@ -1,14 +1,21 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 
-import { getAllPlaylists } from 'scripts'
+import { PlaylistTile } from 'components'
+import { SpotifyPlaylist } from 'types'
+import './PlaylistGallery.scss'
 
-const PlaylistGallery: React.FC = () => {
+const PlaylistGallery: React.FC<{playlists: SpotifyPlaylist[]}> = ({ playlists }) => {
   
-  useEffect(() => {
-    getAllPlaylists()
-  }, [])
+  const printPlaylists = () => (
+    playlists?.map(playlist => (
+      <PlaylistTile 
+        playlist={playlist} 
+        key={`${playlist.id}-tile`} 
+      />
+    ))
+  )
 
-  return <></>
+  return <div className="PlaylistGallery">{printPlaylists()}</div>
 }
 
 export default PlaylistGallery
