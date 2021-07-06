@@ -4,10 +4,10 @@ import { faHome } from '@fortawesome/free-solid-svg-icons'
 
 import { getAllPlaylists } from 'scripts'
 import { RouteType, SpotifyPlaylist } from 'types'
-import './LandingPage.scss'
+import './HomePage.scss'
 
 import { CalendarGraphic, PlaylistGallery } from 'components'
-const LandingPage: React.FC = () => {
+const HomePage: React.FC = () => {
   const [playlists, setPlaylists] = useState<SpotifyPlaylist[]>([])
 
   useEffect(() => {
@@ -20,7 +20,7 @@ const LandingPage: React.FC = () => {
   }, [])
 
   return (
-    <div className="LandingPage">
+    <div className="HomePage">
       <h2>How it Works</h2>
       <CalendarGraphic />
       <div>
@@ -38,9 +38,9 @@ const LandingPage: React.FC = () => {
   )
 } 
 
-const landingPage: RouteType = {
+const homePage: RouteType = {
   path: '/',
-  component: LandingPage,
+  component: HomePage,
   exact: true,
   inNav: {
     name: 'home',
@@ -48,4 +48,4 @@ const landingPage: RouteType = {
   },
 }
 
-export default landingPage
+export default homePage
