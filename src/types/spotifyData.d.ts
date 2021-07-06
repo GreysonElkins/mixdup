@@ -39,7 +39,7 @@ export type SpotifyPlaylist = {
 }
 
 export type TrackItem = {
-  album: album
+  album: Album
   artists: artist[]
   available_markets: Array<any>
   disc_number: number
@@ -57,7 +57,7 @@ export type TrackItem = {
   uri: string
 }
 
-export type artist = {
+export type Artist = {
   external_urls: any
   href: string
   id: string
@@ -66,7 +66,7 @@ export type artist = {
   uri: string
 }
 
-type album = {
+type Album = {
   album_type: string
   artists: artist[]
   available_markets: Array<any>
