@@ -85,3 +85,15 @@ type album = {
   type: string
   uri: string
 }
+
+export type SearchResultsDefinition = {
+  tracks: {
+    href: string
+    items: TrackItem[]
+    limit: number
+    next: string | null
+    offset: number
+    previous: string | null
+    total: number
+  }
+}

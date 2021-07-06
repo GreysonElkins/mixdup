@@ -17,7 +17,7 @@ export type FixedLengthArray<T extends any[]> = Pick<T, Exclude<keyof T, ArrayLe
   [Symbol.iterator]: () => IterableIterator<ArrayItems<T>>
 }
 
-export type { SpotifyPlaylist, TrackItem } from './spotifyData.d'
+export type { SpotifyPlaylist, TrackItem, SearchResultsDefinition } from './spotifyData.d'
 export { Day } from './contexts.d'
 export type {
   SpotifyTokens,
