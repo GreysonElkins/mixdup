@@ -36,7 +36,7 @@ const CalendarGraphic: React.FC = () => {
 
   const printColumnsWithRulePerDay = () => {
     return determineActionPerDayOfWeek().map(({ span, action }, i) => (
-      <td key={`rule-column-${i}`} colSpan={span}>
+      <td key={`rule-column-${i}`} className={action} colSpan={span}>
         {action === 'submit' ? 'Add Songs!' : 'Vote!'}
       </td>
     ))
