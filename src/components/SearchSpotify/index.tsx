@@ -3,13 +3,29 @@ import { Formik, Form, Field } from 'formik'
 import { toast } from 'react-toastify'
 import * as Yup from 'yup'
 
-import { SearchResultsDefinition } from 'types'
+import { SearchResultsDefinition, TrackItem } from 'types'
+import { search } from 'scripts'
+import SearchResults from './SearchResults'
 
 const SearchSpotify:React.FC = () => {
 const [searchResults, setSearchResults] = useState<SearchResultsDefinition | undefined>(
     undefined
-)
+  )
+const [selection, setSelection] = useState<TrackItem | undefined>(undefined)
 
+  const onSearch = (values: { query: string }) => {
+    setIsFocused(true)
+    const { query } = values
+    search(query)
+      .then((results: SearchResultsDefinition) => {
+        setSearchResults(results)
+        console.log({ results })
+      })
+      .catch((error: any) => {
+        toast.dark(`Something went wrong!`, { toastId: 'Spotify Search Error' })
+        console.error(error)
+      })
+    }
 
   const [isFocused, setIsFocused] = useState<boolean>(false)
   return (
@@ -18,8 +34,7 @@ const [searchResults, setSearchResults] = useState<SearchResultsDefinition | und
         <Formik
           initialValues={{ query: '' }}
           validationSchema={Yup.object().shape({ query: Yup.string().required('Required') })}
-          onSubmit={() => console.log('test')}
-        //   onSubmit={onSearch}
+          onSubmit={onSearch}
           className="search-form"
         >
           <div className="search-form-container">
@@ -33,9 +48,9 @@ const [searchResults, setSearchResults] = useState<SearchResultsDefinition | und
             </Form>
           </div>
         </Formik>
-        {/* {searchResults && isFocused && (
+        {searchResults && isFocused && (
           <SearchResults results={searchResults} setSelection={setSelection} />
-        )} */}
+        )}
         {/* {selection && (
           <SelectSong
             selection={selection}
