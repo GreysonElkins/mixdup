@@ -20,3 +20,4 @@ export const ruleOfTheDay = ({
 export { default as firebase, auth } from './firebase/firebaseConfig'
 export { signIn, disconnectUser } from './firebase/user'
 export { getAllPlaylists } from './mixdup/playlist'
+export { search } from './mixdup/spotify'
