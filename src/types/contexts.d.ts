@@ -22,6 +22,7 @@ export type LeagueContextType = {
 export type CalendarContextType = {
   today: Date
   isAdminMode: boolean
+  setIsAdminMode: (mode: boolean) => void
 }
 
 export type ModalContextType = { closeModal: () => void, setModal: (content: ReactElement) => void }

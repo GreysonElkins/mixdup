@@ -1,0 +1,10 @@
+.user-controls {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-end;
+  justify-content: flex-end;
+  height: 100%;
+  > button {
+    margin: 20px 0;
+  }
+}
