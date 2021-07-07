@@ -1,10 +1,11 @@
 import { SearchResultsDefinition, TrackItem, Artist } from 'types'
+// import { SelectSong } from 'scripts'
+import { useModal } from 'hooks'
+import { SelectSong } from 'components'
 import './SearchResults.scss'
 
-const SearchResults: React.FC<{
-  results: SearchResultsDefinition
-  setSelection: (value: TrackItem) => void
-}> = ({ results, setSelection }) => {
+const SearchResults: React.FC<{results: SearchResultsDefinition}> = ({ results }) => {
+  const { setModal } = useModal()
 
   const sortTracksByPopularity = (items: TrackItem[]): TrackItem[] => {
     return items.sort((a: TrackItem, b: TrackItem) => b.popularity - a.popularity)
@@ -24,23 +25,17 @@ const SearchResults: React.FC<{
     return sorted.map((track: TrackItem, i) => (
       <div
         className="result-card"
-        onClick={() => {
-          setSelection(track)
-        }}
+        onClick={() => setModal(<SelectSong selection={track}/>)}
         key={`track-${i}`}
       >
         <img
-          src={track.album.images[2].url}
+          src={track.album.images[0].url}
           alt={`${track.album.name} art, by ${track.album.artists[0]}`}
         />
         <div id={track.name} className="result-card-text">
-          <div className="row">
             <h4>{track.name}</h4>
-          </div>
-          <div className="row">
             <h5>{mapArtists(track.artists)}</h5>
             <h6>{track.album.name}</h6>
-          </div>
         </div>
       </div>
     ))
