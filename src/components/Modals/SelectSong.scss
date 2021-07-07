@@ -1,0 +1,16 @@
+.SelectSong {
+  .selection-controls {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  .song-name {
+    font-weight: 700;
+  }
+
+  .warning {
+    font-style: italic;
+    font-size: 12px;
+  }
+}
