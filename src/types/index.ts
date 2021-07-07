@@ -26,4 +26,5 @@ export type {
   LeagueContextType,
   CalendarContextType,
   DayAction,
+  ModalContextType
 } from './contexts.d'
