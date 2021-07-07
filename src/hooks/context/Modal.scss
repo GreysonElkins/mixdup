@@ -1,0 +1,30 @@
+@import 'style/variables.scss';
+
+.modal-backdrop {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  
+  .modal-body {
+    border-radius: 10px;
+    position: relative;
+    z-index: 11;
+    background-color: $dark-2;
+    margin: 40px;
+    padding: 40px 20px 20px;
+
+    .close-icon {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      color: $dark-3;
+    }
+  }
+
+}
