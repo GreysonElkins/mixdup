@@ -6,8 +6,9 @@ import { allRoutes } from 'views'
 import './Navigation.scss'
 
 const Navigation: React.FC = () => {
-  const icons = allRoutes.filter(({ inNav }) => inNav).map(({ inNav, path }) => (
-    <NavLink to={inNav?.to || path} activeClassName="currentPage" key={`nav-button-${path}`}>
+
+  const icons = allRoutes.filter(({ inNav }) => inNav).map(({ inNav, path, exact }) => (
+    <NavLink exact={exact} to={inNav?.to || path} activeClassName="currentPage" key={`nav-button-${path}`}>
       <FontAwesomeIcon icon={inNav!.icon} size='2x' />
       {inNav!.name}
     </NavLink>
