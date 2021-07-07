@@ -8,14 +8,12 @@ import { search } from 'scripts'
 import SearchResults from './SearchResults'
 import './SearchSpotify.scss'
 
-
 const SearchSpotify:React.FC = () => {
   const [searchResults, setSearchResults] = useState<SearchResultsDefinition | undefined>(
     undefined
   )
 
   const onSearch = (values: { query: string }) => {
-    setIsFocused(true)
     const { query } = values
     search(query)
       .then((results: SearchResultsDefinition) => {
@@ -28,33 +26,27 @@ const SearchSpotify:React.FC = () => {
       })
     }
 
-  const [isFocused, setIsFocused] = useState<boolean>(false)
   return (
-    <>
-      <div className="search-wrapper" onFocus={() => setIsFocused(true)}>
-        <Formik
-          initialValues={{ query: '' }}
-          validationSchema={Yup.object().shape({ query: Yup.string().required('Required') })}
-          onSubmit={onSearch}
-          className="search-form"
-        >
-          <div className="search-form-container">
-            <Form>
-              <div className="search-bar">
-                <Field name="query" type="text" autoComplete="off" />
-                <button className="cta-2" type="submit">
-                  Search
-                </button>
-              </div>
-            </Form>
-          </div>
-        </Formik>
-        {searchResults && isFocused && (
-          <SearchResults results={searchResults} />
-        )}
-      </div>
-      {isFocused && <div className="anti-search-focus" onClick={() => setIsFocused(false)} />}
-    </>
+    <div className="search-wrapper">
+      <Formik
+        initialValues={{ query: '' }}
+        validationSchema={Yup.object().shape({ query: Yup.string().required('Required') })}
+        onSubmit={onSearch}
+        className="search-form"
+      >
+        <div className="search-form-container">
+          <Form>
+            <div className="search-bar">
+              <Field name="query" type="text" autoComplete="off" placeholder="songs, artists, albums, etc."/>
+              <button className="cta-2" type="submit">
+                Search
+              </button>
+            </div>
+          </Form>
+        </div>
+      </Formik>
+      {searchResults && <SearchResults results={searchResults} />}
+    </div>
   )
 }
 
