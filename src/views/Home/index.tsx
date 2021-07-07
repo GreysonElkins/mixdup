@@ -30,8 +30,8 @@ const HomePage: React.FC = () => {
       </div>
       {playlists && (
         <>
-          <h2 className="galleryTitle">All Mixdup Playlists</h2>
-          <PlaylistGallery playlists={playlists} />
+          <h2 className="galleryTitle"></h2>
+          <PlaylistGallery playlists={playlists} title="All Mixdup Playlists" />
         </>
       )}
     </div>
