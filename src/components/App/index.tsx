@@ -17,12 +17,12 @@ const App: React.FC = () => {
   if (!isLoggedIn) return <LoginPage />
 
   return (
-    <>
+    <div className="App">
       <main>
         <Switch>{RouteMap}</Switch>
       </main>
       <Navigation />
-    </>
+    </div>
   )
 }
 
