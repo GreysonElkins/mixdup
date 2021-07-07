@@ -1,0 +1,26 @@
+@import 'style/variables.scss';
+
+.search-bar {
+  display: flex;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  background-color: $dark-1;
+  padding: 30px 30px 0;
+
+  > input {
+    @include clearTextInput;
+      margin: 0;
+      border-right: 0px;
+      border-radius: 5px 0 0 5px;
+      background-color: $dark-1;
+  }
+
+  > button {
+    margin: 0;
+    border-radius: 0 10px 10px 0;
+    font-size: 20px;
+    height: 42px;
+  }
+}
