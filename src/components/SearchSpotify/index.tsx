@@ -3,15 +3,16 @@ import { Formik, Form, Field } from 'formik'
 import { toast } from 'react-toastify'
 import * as Yup from 'yup'
 
-import { SearchResultsDefinition, TrackItem } from 'types'
+import { SearchResultsDefinition } from 'types'
 import { search } from 'scripts'
 import SearchResults from './SearchResults'
+import './SearchSpotify.scss'
+
 
 const SearchSpotify:React.FC = () => {
-const [searchResults, setSearchResults] = useState<SearchResultsDefinition | undefined>(
+  const [searchResults, setSearchResults] = useState<SearchResultsDefinition | undefined>(
     undefined
   )
-const [selection, setSelection] = useState<TrackItem | undefined>(undefined)
 
   const onSearch = (values: { query: string }) => {
     setIsFocused(true)
@@ -49,17 +50,8 @@ const [selection, setSelection] = useState<TrackItem | undefined>(undefined)
           </div>
         </Formik>
         {searchResults && isFocused && (
-          <SearchResults results={searchResults} setSelection={setSelection} />
+          <SearchResults results={searchResults} />
         )}
-        {/* {selection && (
-          <SelectSong
-            selection={selection}
-            setSelection={(value) => {
-              setIsFocused(false)
-              setSelection(value)
-            }}
-          /> */}
-        {/* )} */}
       </div>
       {isFocused && <div className="anti-search-focus" onClick={() => setIsFocused(false)} />}
     </>
