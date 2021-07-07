@@ -15,7 +15,9 @@ const HomePage: React.FC = () => {
       const { items: playlists } = playlistData || {}
       playlists
         ? setPlaylists(playlists)
-        : toast.dark('Something went wrong getting playlists, please try again')
+        : toast.dark('Something went wrong getting playlists, please try again', {
+            toastId: 'Error getting playlists',
+          })
     })
   }, [])
 

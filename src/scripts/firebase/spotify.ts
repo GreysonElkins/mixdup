@@ -8,6 +8,6 @@ export const getAllPlaylistsFromFirebase = async () => {
     return snapshot.exists() && snapshot.val()
   } catch (error) {
     console.error(error)
-    toast.dark('Something went wrong getting all of the playlists')
+    toast.dark('Something went wrong getting all of the playlists', { toastId: 'Playlist fetch error' })
   }
 }
