@@ -1,0 +1,40 @@
+@import 'style/variables.scss';
+
+.AdminCalendarControl {
+  display: flex;
+  justify-content: space-between;
+  width: 95%;
+  margin: 0 auto;
+}
+
+.override-picker {
+  @include clearTextInput;
+  min-width: 0;
+  width: 100%;
+  font-size: 12px;
+  margin: 4px 0;
+}
+
+.override-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.override-buttons {
+  display: flex;
+  margin-bottom: 4px;
+  > button {
+    margin: 0;
+    margin-left: 8px;
+    font-size: 12px !important;
+  }
+}
+
+.date-override {
+  font-size: 26px;
+  display: flex;
+  align-items: center;
+  font-weight: 800;
+  color: $light-accent-1;
+}
