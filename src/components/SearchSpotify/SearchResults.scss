@@ -1,18 +1,49 @@
 @import 'style/variables.scss';
 
-.search-bar {
-  display: flex;
-  > input {
-    @include clearTextInput;
-      margin: 0;
-      border-right: 0px;
-      border-radius: 5px 0 0 5px;
+.SearchResults {
+  padding: 50px 0 100px;
+  max-height: 80%;
+  overflow: scroll;
+
+  .result-card {
+    display: flex;
+    margin: 15px 0;
+    height: 100px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid $dark-3;
+
+    > img {
+      height: 100px;
+      width: 100px;
+    }
+
+    .result-card-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+
+      h4, h5, h6 {
+        margin: 0;
+        margin-left: 16px;
+      }
+
+      h4 {
+        font-size: 24px;
+      }
+
+      h5 {
+        font-size: 16px;
+        font-weight: 600;
+        color: $light-2;
+      }
+
+      h6 {
+        font-size: 16px;
+        font-weight: 600;
+        color: $light-2;
+      }
+    }
   }
 
-  > button {
-    margin: 0;
-    border-radius: 0 10px 10px 0;
-    font-size: 20px;
-    height: 42px;
-  }
 }
