@@ -4,7 +4,7 @@ import { ToastContainer } from 'react-toastify'
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 
-import { CalendarProvider, UserProvider, LeagueProvider } from 'hooks'
+import { CalendarProvider, UserProvider, LeagueProvider, ModalProvider } from 'hooks'
 import { App } from 'components';
 import './index.scss';
 import 'react-toastify/dist/ReactToastify.css'
@@ -13,11 +13,13 @@ import 'react-toastify/dist/ReactToastify.min.css'
 ReactDOM.render(
   <BrowserRouter>
     <UserProvider>
-      <CalendarProvider>
-        <LeagueProvider>
-          <App />
-        </LeagueProvider>
-      </CalendarProvider>
+        <CalendarProvider>
+          <LeagueProvider>
+            <ModalProvider>
+              <App />
+            </ModalProvider>
+          </LeagueProvider>
+        </CalendarProvider>
     </UserProvider>
     <ToastContainer position="top-right" />
   </BrowserRouter>,
