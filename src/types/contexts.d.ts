@@ -23,6 +23,8 @@ export type CalendarContextType = {
   today: Date
 }
 
+export type ModalContextType = { closeModal: () => void, setModal: (content: ReactElement) => void }
+
 export enum Day {
   SUN = 0,
   MON = 1,
