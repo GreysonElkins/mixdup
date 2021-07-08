@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 import { PlaylistTile } from 'components'
 import { SpotifyPlaylist } from 'types'
@@ -13,10 +14,12 @@ const PlaylistGallery: React.FC<Props> = ({ playlists, title }) => {
   
   const printPlaylists = () => (
     playlists?.map(playlist => (
-      <PlaylistTile 
-        playlist={playlist} 
-        key={`${playlist.id}-tile`} 
-      />
+      <Link to={`/playlist/${playlist.id}`}>
+        <PlaylistTile 
+          playlist={playlist} 
+          key={`${playlist.id}-tile`} 
+        />
+      </Link>
     ))
   )
 
