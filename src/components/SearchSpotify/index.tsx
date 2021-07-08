@@ -18,8 +18,12 @@ const SearchSpotify:React.FC = () => {
     const { query } = values
     search(query)
       .then((results: SearchResultsDefinition) => {
-        setSearchResults(results)
-        console.log({ results })
+        if (results?.tracks?.items?.length > 0) {
+          setSearchResults(results)
+        } else {
+          toast.dark(`We couldn't find anything to do with ${query} 😬`, { toastId: 'bad-search' })
+        }
+
       })
       .catch((error: any) => {
         toast.dark(`Something went wrong!`, { toastId: 'Spotify Search Error' })
