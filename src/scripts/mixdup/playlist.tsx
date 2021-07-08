@@ -33,7 +33,7 @@ export const getThisWeeksTheme = async (date: Date) => {
   }
 }
 
-export const getRelevantPlaylist = async (date: Date) => {
+export const getRelevantPlaylist = async (date: Date): Promise<SpotifyPlaylist | undefined> => {
   try {
     const data = await fetch(`${baseUrl}/contest-playlist`, {
       method: 'POST',
