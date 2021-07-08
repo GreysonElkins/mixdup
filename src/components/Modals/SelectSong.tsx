@@ -28,6 +28,7 @@ const SelectSong: React.FC<{selection: TrackItem}> = ({ selection }) => {
             onClick={(event) => {
               event.preventDefault()
               submitSong(id, selection.uri, selection.name, today)
+              closeModal()
             }}
           >
             submit
