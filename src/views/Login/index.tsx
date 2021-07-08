@@ -13,10 +13,10 @@ export const LoginPage: React.FC = () => {
   if (isLoggedIn) return <Redirect to='/' />
   
   return (
-  <main className="Login">
+  <div className="Login">
     <SpinningLoader />
     <LoginSignUpForm />
-  </main>
+  </div>
 )}
 
 const login: RouteType = {
