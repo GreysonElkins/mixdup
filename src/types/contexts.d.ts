@@ -18,6 +18,7 @@ export type LeagueContextType = {
   loading: boolean
   mode: 'vote' | 'submit' | 'loading'
   rules: FixedLengthArray<[DayAction, DayAction]>
+  thisWeeksPlaylist: SpotifyPlaylist | undefined
 }
 export type CalendarContextType = {
   today: Date
