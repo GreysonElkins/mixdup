@@ -1,0 +1,23 @@
+@import 'style/variables.scss';
+
+.EmptySearchBin {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 150px;
+
+  img {
+    max-width: 90%;
+    opacity: 0.5;
+  }
+  .empty-search-text {
+    max-width: 90%;
+    margin-top: 20px;
+    font-weight: 800;
+    color: $light-1;
+    opacity: 0.8;
+    text-align: center;
+    font-size: 16px;
+  }
+}
