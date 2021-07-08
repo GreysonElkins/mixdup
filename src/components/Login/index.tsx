@@ -3,10 +3,13 @@ import { Formik, Form, Field } from 'formik'
 import { signIn } from 'scripts'
 
 import { loginValidation, signUpValidation, formRows } from './formData'
+import { HowItWorks } from 'components'
+import { useModal } from 'hooks'
 import './Login.scss'
 
 const LoginSignUpForm: React.FC = () => {
   const [isSignUp, setIsSignUp] = useState<boolean>(false)
+  const { setModal } = useModal()
   
   const autoCompleteValue = (fieldName: string) => {
     switch (fieldName) {
@@ -40,8 +43,14 @@ const LoginSignUpForm: React.FC = () => {
     <Formik
       initialValues={{ email: '', password: '', username: '', staySignedIn: true }}
       validationSchema={isSignUp ? signUpValidation : loginValidation}
-      onSubmit={({ email, password, username }) => signIn({ email, username, password, isSignUp })
-      }
+      onSubmit={async ({ email, password, username }) => {
+        try {
+          await signIn({ email, username, password, isSignUp })
+          isSignUp && setModal(HowItWorks)
+        } catch (error) {
+          console.error(error)
+        }
+      }}
     >
       {({ errors, touched }) => (
         <Form className="SignIn">
