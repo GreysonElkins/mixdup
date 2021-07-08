@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Switch } from 'react-router-dom'
 
 import RouteMap from 'views'
-import { useUser, useCalendar, useModal } from 'hooks'
+import { useUser, useCalendar } from 'hooks'
 import { LoginPage } from 'views/Login'
-import { Navigation, HowItWorks } from 'components'
+import { Navigation } from 'components'
 import { SpinningLoader } from 'style'
 
 import './App.scss'
@@ -12,9 +12,6 @@ import './App.scss'
 const App: React.FC = () => {
   const { isLoggedIn, loading } = useUser()
   const { isAdminMode } = useCalendar()
-  const { setModal } = useModal()
-
-  useEffect(() => setModal(HowItWorks), [])
   
   if (loading) return <SpinningLoader solo />
   if (!isLoggedIn) return <LoginPage />
