@@ -44,7 +44,7 @@ const SearchSpotify:React.FC = () => {
             <Form>
               <div className="search-bar">
                 <Field name="query" type="text" autoComplete="off" placeholder="songs, artists, albums, etc."/>
-                <button className="cta-2" type="submit">
+                <button className="cta-1" type="submit">
                   Search
                 </button>
               </div>
