@@ -23,19 +23,7 @@ const HomePage: React.FC = () => {
 
   return (
     <div className="HomePage">
-      <h2>How it Works</h2>
-      <CalendarGraphic />
-      <div>
-        Every week the mix-league makes a new playlist together and votes on their favorites
-        together. Each contributor gets to rank their top three songs, but you can't pick songs
-        you've heard before.
-      </div>
-      {playlists && (
-        <>
-          <h2 className="galleryTitle"></h2>
-          <PlaylistGallery playlists={playlists} title="All Mixdup Playlists" />
-        </>
-      )}
+      {playlists && <PlaylistGallery playlists={playlists} title="All Mixdup Playlists" />}
     </div>
   )
 } 

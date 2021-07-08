@@ -10,4 +10,4 @@ export { default as PlaylistTile } from './PlaylistGallery/PlaylistTile'
 
 export { default as SearchSpotify } from './SearchSpotify'
 
-export { SelectSong } from './Modals'
+export { SelectSong, HowItWorks } from './Modals'
