@@ -20,7 +20,7 @@ export type SpotifyPlaylist = {
   snapshot_id: string
   tracks: {
     href: string
-    items: Array<{
+    items?: Array<{
       added_at: string
       added_by: string
       is_local: false
@@ -28,10 +28,37 @@ export type SpotifyPlaylist = {
       track: TrackItem
       video_thumbnail: any
     }>
-    limit: 100
-    next: any
-    offset: number
-    previous: any
+    limit?: 100
+    next?: any
+    offset?: number
+    previous?: any
+    total: number
+  }
+  type: string
+  uri: string
+}
+
+export type PartialSpotifyPlaylist = {
+  collaborative: boolean
+  description: string
+  externalUrls: { [key: string]: string }
+  href: string
+  id: string
+  images: Array<any>
+  name: string
+  owner: {
+    display_name: string
+    externalUrls: { [key: string]: string }
+    href: string
+    id: string
+    type: string
+    uri: string
+  }
+  primary_color: any
+  public: boolean
+  snapshot_id: string
+  tracks: {
+    href: string
     total: number
   }
   type: string
