@@ -29,7 +29,7 @@ const SearchResults: React.FC<{results: SearchResultsDefinition}> = ({ results }
         key={`track-${i}`}
       >
         <img
-          src={track.album.images[0].url}
+          src={track.album.images[0]?.url || ''}
           alt={`${track.album.name} art, by ${track.album.artists[0]}`}
         />
         <div id={track.name} className="result-card-text">
