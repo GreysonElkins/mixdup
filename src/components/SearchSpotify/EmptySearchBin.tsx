@@ -1,21 +1,30 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 
-import { useLeague } from "hooks"
-import { dayFromDayNum } from "scripts"
+import { useLeague, useCalendar } from "hooks"
+import { dayFromDayNum, getThisWeeksTheme } from "scripts"
 
 import './EmptySearchBin.scss'
 
 const EmptySearchBin: React.FC = () => {
+  const [theme, setTheme] = useState<string>('')
+  const { today } = useCalendar()
   const { rules } = useLeague()
+
+  useEffect(() => {
+    getThisWeeksTheme(today)
+      .then(theme => theme && setTheme(theme))
+      .catch(error => console.error(error))
+  }, [today])
+
   return (
     <div className="EmptySearchBin">
-      <img src="https://media.giphy.com/media/RtIMLBSGzkOZy/giphy.gif" alt="an animated cassette" />
       <div className="empty-search-text">
-        Submissions have started for this weeks playlist
+        {theme && `This weeks theme is "${theme}"`}
         <br /> 
         <br /> 
         Send in a song before voting starts on {dayFromDayNum(rules[1].start)}
       </div>
+      <img src="https://media.giphy.com/media/RtIMLBSGzkOZy/giphy.gif" alt="an animated cassette" />
     </div>
   )
 }
