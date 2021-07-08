@@ -8,6 +8,8 @@ export { default as CalendarGraphic } from './CalendarGraphic'
 export { default as PlaylistGallery } from './PlaylistGallery'
 export { default as PlaylistTile } from './PlaylistGallery/PlaylistTile'
 
+export { default as Songlist } from './Songlist'
+
 export { default as SearchSpotify } from './SearchSpotify'
 
 export { SelectSong, HowItWorks } from './Modals'
