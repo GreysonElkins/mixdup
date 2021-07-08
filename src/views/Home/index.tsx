@@ -6,7 +6,7 @@ import { getAllPlaylists } from 'scripts'
 import { RouteType, SpotifyPlaylist } from 'types'
 import './HomePage.scss'
 
-import { CalendarGraphic, PlaylistGallery } from 'components'
+import { PlaylistGallery } from 'components'
 const HomePage: React.FC = () => {
   const [playlists, setPlaylists] = useState<SpotifyPlaylist[]>([])
 
