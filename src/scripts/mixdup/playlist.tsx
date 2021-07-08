@@ -1,6 +1,7 @@
 import { firebase } from 'scripts'
 import { baseUrl } from '.'
 import { toast } from 'react-toastify'
+import { SpotifyPlaylist } from 'types'
 
 export const getAllPlaylists = async () => {
   try {
@@ -14,9 +15,47 @@ export const getAllPlaylists = async () => {
   }
 }
 
+export const getThisWeeksTheme = async (date: Date) => {
+  try {
+    const token = await firebase.auth().currentUser?.getIdToken()
+    const result = await fetch(`${baseUrl}/new-theme-new-list`, {
+      method: 'POST',
+      headers: {
+        'Access-Control-Request-Headers': 'Content-Type, authorization',
+        'Content-Type': 'application/json',
+        authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ date }),
+    })
+    return await result.text()
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export const getRelevantPlaylist = async (date: Date) => {
+  try {
+    const data = await fetch(`${baseUrl}/contest-playlist`, {
+      method: 'POST',
+      headers: {
+        'Access-Control-Request-Headers': 'Content-Type',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ date }),
+    })
+    return data
+      .text()
+      .then(playlist => {
+        return JSON.parse(playlist)
+      })
+      .catch(error => console.error(error))
+  } catch (error) {
+    console.error(error)
+  }
+}
+
 export const submitSong = async (user_id: string, submission_uri: string, trackName: string, date: Date) => {
   try {
-    debugger
     const token = await firebase.auth().currentUser?.getIdToken()
     await fetch(`${baseUrl}/submit-song`, {
       method: 'POST',
