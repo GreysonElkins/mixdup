@@ -20,7 +20,6 @@ const LeaguePage: React.FC = () => {
     <>
       {View && View}
       <HelpIcon modal={HowItWorks} />
-      {/* HelpIcon is throwing an error */}
     </>
   )
 }
