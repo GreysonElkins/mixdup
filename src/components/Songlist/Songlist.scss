@@ -1,10 +1,11 @@
 @import 'style/variables.scss';
 
 .Songlist {
+  height: 90%;
   .head {
     display: flex;
     justify-content: space-between;
-
+    padding-bottom: 10px;
     h1 {
       margin: 0 16px 0 0;
       color: $light-accent-1;
@@ -20,9 +21,16 @@
   }
 
   .songs {
-    padding: 20px;
+    margin: 0 -30px;
+    height: 100%;
+    background-color: $black;
+    overflow: scroll;
+    padding: 0 20px;
+
     .song-tile {
+      margin: 20px 0;
       display: flex;      
+      align-items: center;
 
       img {
         width: 60px;
