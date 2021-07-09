@@ -16,10 +16,7 @@ export const LeagueProvider: React.FC = ({ children }) => {
 
   useEffect(() => {
     getRelevantPlaylist(today)
-      .then(playlist => {
-        playlist && setThisWeeksPlaylist(playlist)
-        console.log(playlist)
-      })
+      .then(playlist => playlist && setThisWeeksPlaylist(playlist))
       .catch(error => console.error(error))
   }, [today])
 

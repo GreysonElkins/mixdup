@@ -14,7 +14,7 @@ const LeaguePage: React.FC = () => {
   useEffect(() => {
     mode === 'submit' && setView(<Submissions />) 
     thisWeeksPlaylist && mode === 'vote' && setView(<Songlist playlist={thisWeeksPlaylist}/>) // this should be broken out into another view with player and votes
-  }, [mode])
+  }, [mode, thisWeeksPlaylist])
 
   return (
     <>
