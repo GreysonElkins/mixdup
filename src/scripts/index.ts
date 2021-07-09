@@ -38,5 +38,11 @@ export const dayFromDayNum = (num: Day) => {
 
 export { default as firebase, auth } from './firebase/firebaseConfig'
 export { signIn, disconnectUser } from './firebase/user'
-export { getAllPlaylists, submitSong, getRelevantPlaylist, getThisWeeksTheme } from './mixdup/playlist'
 export { search } from './mixdup/spotify'
+export {
+  getPlaylist,
+  getAllPlaylists,
+  submitSong,
+  getRelevantPlaylist,
+  getThisWeeksTheme,
+} from './mixdup/playlist'
