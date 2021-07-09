@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
 import { SpotifyPlaylist, TrackItem } from 'types'
+import { getPlaylist } from 'scripts'
 import './Songlist.scss'
 
 type Props = {
@@ -14,8 +15,16 @@ const Songlist: React.FC<Props> = ({ playlist }) => {
     if (playlist.tracks?.items) {
       const tracks = playlist.tracks.items.map(({ track }) => track)
       setSongs(tracks)
+    } else {
+      getPlaylist(playlist.id)
+        .then(data => {
+          const { items } = data.tracks
+          const tracks = items.map(({ track }:{ track: TrackItem }) => track)
+          setSongs(tracks)
+        })
+        .catch(error => console.error(error))
     }
-  }, [playlist.tracks.items])
+  }, [playlist.id, playlist.tracks.items])
 
   const makeSongTiles = () =>
     songs.map(({ name, artists, album }, i) => (
@@ -24,7 +33,6 @@ const Songlist: React.FC<Props> = ({ playlist }) => {
         <div className="song-info">
           <span className="song-name">{name}</span>
           <span>{artists?.map((artist) => artist.name).join(', ')}</span>
-          <span>{album.name}</span>
         </div>
       </div>
     ))
