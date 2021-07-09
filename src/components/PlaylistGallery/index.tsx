@@ -14,18 +14,21 @@ const PlaylistGallery: React.FC<Props> = ({ playlists, title }) => {
   
   const printPlaylists = () => (
     playlists?.map(playlist => (
-      <Link to={`/playlist/${playlist.id}`}>
-        <PlaylistTile 
-          playlist={playlist} 
-          key={`${playlist.id}-tile`} 
-        />
+      <Link 
+        to={{
+          pathname: `/playlist`,
+          state: { playlist }
+        }} 
+        key={`${playlist.id}-tile`}
+      >
+        <PlaylistTile playlist={playlist} />
       </Link>
     ))
   )
 
   return (
     <>
-      {title && <h2 className="gallery-title">{title}</h2>}
+      {title && playlists.length > 0 && <h2 className="gallery-title">{title}</h2>}
       <div className="PlaylistGallery">{printPlaylists()}</div>
     </>
   )

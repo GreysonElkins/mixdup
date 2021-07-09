@@ -1,3 +1,4 @@
+import { ReactElement } from 'react'
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons'
 
 export type RouteType = {
@@ -9,6 +10,11 @@ export type RouteType = {
     icon: IconDefinition
     to?: string
   }
+}
+
+export type RouteWithProps = {
+  path: string
+  render: (value: { location: any }) => ReactElement
 }
 
 type ArrayLengthMutationKeys = 'splice' | 'push' | 'pop' | 'shift' | 'unshift' | number

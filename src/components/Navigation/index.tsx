@@ -2,12 +2,12 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-import { allRoutes } from 'views'
+import { routes } from 'views'
 import './Navigation.scss'
 
 const Navigation: React.FC = () => {
 
-  const icons = allRoutes.filter(({ inNav }) => inNav).map(({ inNav, path, exact }) => (
+  const icons = routes.filter(({ inNav }) => inNav).map(({ inNav, path, exact }) => (
     <NavLink exact={exact} to={inNav?.to || path} activeClassName="currentPage" key={`nav-button-${path}`}>
       <FontAwesomeIcon icon={inNav!.icon} size='2x' />
       {inNav!.name}
