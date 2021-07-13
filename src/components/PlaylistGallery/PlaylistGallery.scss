@@ -1,9 +1,8 @@
 .PlaylistGallery {
   display: flex;
-  width: 100%;
+  width: 90%;
   margin: 0 auto;
   overflow: scroll;
-  padding: 20px 0;
   > a {
     text-decoration: none;
   }
@@ -13,5 +12,6 @@
 }
 
 .gallery-title {
-  width: 100%;
+  width: 90%;
+  margin: 20px 0;
 }
