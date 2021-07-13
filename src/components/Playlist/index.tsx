@@ -1,7 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 
-import { SpotifyPlaylist, TrackItem, EffectProps } from 'types'
-import { useScrollPosition } from 'hooks'
+import { 
+  SpotifyPlaylist, 
+  TrackItem, 
+  // EffectProps 
+} from 'types'
+// import { useScrollPosition } from 'hooks'
 import { getPlaylist } from 'scripts'
 import { PlaylistWrapper } from 'style'
 import PlaylistItems from './PlaylistItems'
@@ -14,16 +18,16 @@ type Props = {
 
 const Playlist: React.FC<Props> = ({ playlist }) => {
   const [songs, setSongs] = useState<TrackItem[]>([])
-  const ref = useRef(null)
+  // const ref = useRef(null)
 
-  const [scroll, setScroll] = useState<boolean>(true)
+  // const [scroll, setScroll] = useState<boolean>(true)
 
-  const onScroll = ({ currPos, prevPos }: EffectProps) => {
-    console.log({ currPos, prevPos })
-    setScroll(currPos.y > prevPos.y)
-  }
+  // const onScroll = ({ currPos, prevPos }: EffectProps) => {
+  //   console.log({ currPos, prevPos })
+  //   setScroll(currPos.y > prevPos.y)
+  // }
 
-  useScrollPosition({ effect: onScroll, element: ref, deps: [ref, scroll], wait: 500 })
+  // useScrollPosition({ effect: onScroll, element: ref, deps: [], wait: 500 })
 
   useEffect(() => {
     if (playlist.tracks?.items) {
@@ -42,7 +46,7 @@ const Playlist: React.FC<Props> = ({ playlist }) => {
 
   return (
     <>
-      <PlaylistWrapper ref={ref}>
+      <PlaylistWrapper>
         <PlaylistHeader {...playlist} />
         {songs.length > 0 && <PlaylistItems songs={songs}/>}
       </PlaylistWrapper>
