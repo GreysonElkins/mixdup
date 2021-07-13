@@ -40,3 +40,5 @@ export type {
   DayAction,
   ModalContextType
 } from './contexts.d'
+
+export type { EffectProps } from 'hooks/useScrollPosition'
