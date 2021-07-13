@@ -1,10 +1,10 @@
 import React from 'react'
 
 import { RouteWithProps, SpotifyPlaylist } from 'types'
-import { Songlist } from 'components'
+import { Playlist } from 'components'
 
 const PlaylistPage: React.FC<{playlist: SpotifyPlaylist}> = ({ playlist }) => {
-  return <Songlist playlist={playlist} />
+  return <Playlist playlist={playlist} />
 }
 
 const playlistPage: RouteWithProps = {
