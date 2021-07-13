@@ -1,10 +1,11 @@
 import React, { useState, useEffect, ReactElement } from 'react'
 import { RouteType, SpotifyPlaylist } from 'types'
-import { faAward } from '@fortawesome/free-solid-svg-icons'
+import { faTrophy } from '@fortawesome/free-solid-svg-icons'
 
 import { useLeague } from 'hooks'
-import { Songlist, HowItWorks } from 'components'
+import { HowItWorks } from 'components'
 import Submissions from './Submissions'
+import Voting from './Voting'
 import { HelpIcon } from 'style'
 
 const LeaguePage: React.FC = () => {
@@ -13,7 +14,7 @@ const LeaguePage: React.FC = () => {
   
   useEffect(() => {
     mode === 'submit' && setView(<Submissions />) 
-    thisWeeksPlaylist && mode === 'vote' && setView(<Songlist playlist={thisWeeksPlaylist}/>) // this should be broken out into another view with player and votes
+    thisWeeksPlaylist && mode === 'vote' && setView(<Voting playlist={thisWeeksPlaylist}/>) // this should be broken out into another view with player and votes
   }, [mode, thisWeeksPlaylist])
 
   return (
@@ -30,7 +31,7 @@ const league: RouteType = {
   exact: true,
   inNav: {
     name: 'mix league',
-    icon: faAward,
+    icon: faTrophy,
   },
 }
 
