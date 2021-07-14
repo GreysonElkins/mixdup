@@ -18,7 +18,7 @@ const App: React.FC = () => {
 
   return (
     <div className="App">
-      <main style={{ height: isAdminMode ? 'calc(100vh - 192px)' : '100vh'}}>
+      <main style={{ height: isAdminMode ? 'calc(100vh - 140px)' : '100vh'}}>
         <Switch>{RouteMap}</Switch>
       </main>
       <Navigation />
