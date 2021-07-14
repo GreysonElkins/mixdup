@@ -46,3 +46,4 @@ export {
   getRelevantPlaylist,
   getThisWeeksTheme,
 } from './mixdup/playlist'
+export { submitVotes } from './mixdup/votes'
