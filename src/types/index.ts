@@ -42,3 +42,4 @@ export type {
 } from './contexts.d'
 
 export type { EffectProps } from 'hooks/useScrollPosition'
+export type { VoteValues } from 'components/Votes'
