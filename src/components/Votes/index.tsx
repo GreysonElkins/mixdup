@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react'
 import { Formik, Form, Field, FieldArray } from 'formik'
 import * as yup from 'yup'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAward, faPlusCircle, faChevronUp, faVoteYea } from '@fortawesome/free-solid-svg-icons';
+import { faAward, faPlusCircle, faVoteYea } from '@fortawesome/free-solid-svg-icons';
 
+import { useCalendar, useUser } from 'hooks'
+import { submitVotes } from 'scripts'
 import { TrackItem } from "types";
 import './Votes.scss'
 
-type FormValues = {
+export type VoteValues = {
   [key: string]: string | string[]
   first: string
   second: string
@@ -18,18 +20,9 @@ type FormValues = {
 const Selector: React.FC<{
   place: 'first' | 'second' | 'third'
   songs: TrackItem[]
-  values: FormValues
+  values: VoteValues
   setFieldValue: (field: string, value: string) => void
-
 }> = ({ place, songs, values, setFieldValue,  }) => {
-    useEffect(() => console.log('change'), [JSON.stringify(values)])
-
-  const noMultipleScores = (name: string) => {
-    const voteFields = Object.keys(values)
-    voteFields.forEach((field: string) => {
-      if (field !== place && values[field] === name) setFieldValue(field, '')
-    })
-  }
     
   return (
     <div key={`${place}=select`} className="vote-selector">
@@ -41,7 +34,7 @@ const Selector: React.FC<{
       <select
         placeholder={`${place} place`}
         name={place}
-        onChange={(event) => noMultipleScores(event.target.value)}
+        onChange={(event) => setFieldValue(place, event.target.value)}
       >
         <option value="" label={`${place} place`} />
         {songs.map(({ name }, i) => (
@@ -53,21 +46,26 @@ const Selector: React.FC<{
 }
 
 const Votes: React.FC<{songs: TrackItem[]}> = ({ songs }) => {
+  const { id } = useUser()
+  const { today } = useCalendar()
   const [closed, setClosed] = useState<boolean>(false)
+  // const printHeardFields = (value, ) => {
+      // }
   return (
     <Formik
       initialValues={{ first: '', second: '', third: '', heard: [] }}
-      onSubmit={() => console.log('submit')}
+      onSubmit={(values) => submitVotes(id, values, today)}
     >
       {({ values, setFieldValue }) => (
         <Form className='Votes'>
           <Selector place={'first'} songs={songs} values={values} setFieldValue={setFieldValue} />
           <Selector place={'second'} songs={songs} values={values} setFieldValue={setFieldValue} />
           <Selector place={'third'} songs={songs} values={values} setFieldValue={setFieldValue} />
+
           <div className="vote-right-buttons">
-            <button className="vote-button" type="button">
+            {/* <button className="vote-button" type="button">
               <FontAwesomeIcon icon={faPlusCircle} />
-            </button>
+            </button> */}
             <button className="vote-button" type="submit">
               <FontAwesomeIcon icon={faVoteYea} />
             </button>
