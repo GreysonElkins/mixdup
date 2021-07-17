@@ -16,13 +16,13 @@ type RawSubmissionData = {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const findLabelName = async (trackName: string) => {
+export const findSubmittersName = async (trackName: string) => {
   // this function will be a challenge to use in `chartLastWeeksVotes` reduce
   const submission = await getSubmissionFromVote(trackName) as unknown as RawSubmissionData
-  if (!submission) return trackName
+  if (!submission) return 'MixDup'
   const { userId } = Object.values(submission)[0]
   const username = await getUserName(userId)
-  return `${trackName} - ${username}`
+  return username
 }
 
 export const chartLastWeeksVotes = (votes: Vote[]) => {
@@ -34,11 +34,17 @@ export const chartLastWeeksVotes = (votes: Vote[]) => {
     ],
   }
   return votes.reduce(({ labels, datasets }: ChartDataObject, { trackName, score }: Vote) => {
-    if (!labels.includes(trackName)) {
-      labels.push(trackName)
+    const printableTrackName = trackName
+      ? trackName.length > 13
+        ? `${trackName.slice(0, 13)}...`
+        : trackName
+      : trackName 
+
+    if (!labels.includes(printableTrackName)) {
+      labels.push(printableTrackName)
       datasets.forEach(({ data }) => data.push(0))
     }
-    const dataIndex = labels.indexOf(trackName)
+    const dataIndex = labels.indexOf(printableTrackName)
     if (score === 0) {
       datasets[1].data[dataIndex] += 1
     } else {
