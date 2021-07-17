@@ -12,7 +12,7 @@ export { default as Playlist, FollowPlaylistButton } from './Playlist'
 export { default as PlaylistHeader } from './Playlist/PlaylistHeader'
 export { default as PlaylistItems } from './Playlist/PlaylistItems'
 export { default as Votes } from './Votes'
-export { default as StatChart } from './StatChart'
+export { default as StatChart } from './StatChartLoader'
 
 export { default as SearchSpotify } from './SearchSpotify'
 
