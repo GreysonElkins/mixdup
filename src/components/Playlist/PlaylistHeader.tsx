@@ -16,7 +16,8 @@ const PlaylistHeader:React.FC<Props> = ({ id, primary_color, name, description, 
     <div className="head">
       <div>
         <h1 style={{ color: primary_color }}>{name}</h1>
-        <h2>{description.replace('&#x27;', "'")}</h2>
+        <h2>this week's theme:</h2>
+        <h3>{description.replace('&#x27;', "'")}</h3>
       </div>
       <div className="right-head">
         {images.length > 0 && (
