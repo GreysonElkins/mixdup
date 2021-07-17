@@ -57,6 +57,7 @@ export {
 export { submitVotes } from './mixdup/votes'
 export { getVotesFromFirebase, getSubmissionFromVote } from './firebase/vote'
 export {
+  findSubmittersName,
   getLastWeeksVotes,
   chartLastWeeksVotes,
 } from './statistics/lastWeeksVotes'
