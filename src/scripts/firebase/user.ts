@@ -1,6 +1,8 @@
 import { firebase, auth } from 'scripts'
 import { toast } from 'react-toastify'
 
+import { UserTokenUpdate, SpotifyTokens } from 'types'
+
 type AuthenticatingUser = { email: string; password: string; username: string; isSignUp: boolean }
 
 const signInErrors = (error: any) => {
@@ -40,4 +42,57 @@ export const disconnectUser = () => {
     .auth()
     .signOut()
     .catch((error) => console.error(error))
+}
+
+export const getUserName = async (userId: string) => {
+  const snapshot = await firebase
+    .database()
+    .ref()
+    .child('users')
+    .child(userId)
+    .child('username')
+    .get()
+  return snapshot.exists() && snapshot.val()
+}
+
+export const getUserSubmissions = async (id: string) => {
+  try {
+    const snapshot = await firebase
+      .database()
+      .ref('submission')
+      .orderByChild('userId')
+      .equalTo(id)
+      .get()
+    return snapshot.exists() && snapshot.val()
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+export const saveSpotifyTokensToFirebase = (id: string, tokens: SpotifyTokens) => {
+  firebase
+    .database()
+    .ref('users/' + id + '/spotify_tokens')
+    .set({ ...tokens })
+}
+
+export const getSpotifyTokensFromFirebase = (id: string, updateUserTokens: UserTokenUpdate) => {
+  firebase
+    .database()
+    .ref()
+    .child('users')
+    .child(id)
+    .child('spotify_tokens')
+    .get()
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        const data = snapshot.val()
+        if (data.access_token && data.refresh_token) updateUserTokens(data)
+      } else {
+        console.log('No saved tokens')
+      }
+    })
+    .catch((error) => {
+      console.error(error)
+    })
 }
