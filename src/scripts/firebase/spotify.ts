@@ -1,5 +1,4 @@
 import { firebase } from 'scripts'
-import { SpotifyTokens, UserTokenUpdate } from 'types'
 import { toast } from 'react-toastify'
 
 export const getAllPlaylistsFromFirebase = async () => {
