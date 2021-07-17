@@ -29,11 +29,10 @@ export type {
   SearchResultsDefinition,
   Artist,
   PartialSpotifyPlaylist,
+  SpotifyTokens
 } from './spotifyData.d'
 export { Day } from './contexts.d'
 export type {
-  SpotifyTokens,
-  UserTokenUpdate,
   UserContextType,
   LeagueContextType,
   CalendarContextType,
@@ -43,3 +42,12 @@ export type {
 
 export type { EffectProps } from 'hooks/useScrollPosition'
 export type { VoteValues } from 'components/Votes'
+export type {
+  Vote,
+  ChartLine,
+  ChartedSongData,
+  ChartConfig,
+  ChartDataObject,
+  Submission,
+} from './statistics.d'
+export type { UserTokenUpdate } from 'hooks/context/User'
