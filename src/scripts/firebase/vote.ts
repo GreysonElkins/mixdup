@@ -6,11 +6,16 @@ export const getVotesFromFirebase = async () => {
 }
 
 export const getSubmissionFromVote = async (trackName: string) => {
-  const snapshot = await firebase
-    .database()
-    .ref('submission')
-    .orderByChild('trackName')
-    .equalTo(trackName)
-    .get()
-  return snapshot.exists() && snapshot.val()
+  try {
+    const snapshot = await firebase
+      .database()
+      .ref('submission')
+      .orderByChild('trackName')
+      .equalTo(trackName)
+      .get()
+    return snapshot.exists() && snapshot.val()
+  } catch (error) {
+    console.error(error)
+    return ''
+  }
 }
