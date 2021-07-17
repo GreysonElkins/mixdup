@@ -8,7 +8,7 @@ export { default as CalendarGraphic } from './CalendarGraphic'
 export { default as PlaylistGallery } from './PlaylistGallery'
 export { default as PlaylistTile } from './PlaylistGallery/PlaylistTile'
 
-export { default as Playlist } from './Playlist'
+export { default as Playlist, FollowPlaylistButton } from './Playlist'
 export { default as PlaylistHeader } from './Playlist/PlaylistHeader'
 export { default as PlaylistItems } from './Playlist/PlaylistItems'
 export { default as Votes } from './Votes'
