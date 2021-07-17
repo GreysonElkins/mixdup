@@ -7,7 +7,6 @@ import {
 } from 'scripts'
 
 import type { UserContextType, SpotifyTokens } from 'types'
-export type UserTokenUpdate = (value: SpotifyTokens, saveToFirebase?: boolean) => void
 
 const UserContext = createContext({} as UserContextType)
 
@@ -48,6 +47,9 @@ export const UserProvider: React.FC = ({ children }) => {
         id,
         isLoggedIn: id !== '',
         logout,
+        access_token: spotify_tokens.access_token,
+        refresh_token: spotify_tokens.refresh_token,
+        updateUserTokens
       }}
     >
       {children}
