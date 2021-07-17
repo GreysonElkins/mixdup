@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useLeague } from 'hooks'
 
 import { PlaylistTile } from 'components'
 import { SpotifyPlaylist } from 'types'
@@ -11,20 +12,24 @@ type Props = {
 }
 
 const PlaylistGallery: React.FC<Props> = ({ playlists, title }) => {
-  
-  const printPlaylists = () => (
-    playlists?.map(playlist => (
-      <Link 
-        to={{
-          pathname: `/playlist`,
-          state: { playlist }
-        }} 
-        key={`${playlist.id}-tile`}
-      >
-        <PlaylistTile playlist={playlist} />
-      </Link>
-    ))
-  )
+  const { mode } = useLeague()
+
+  const printPlaylists = () => {
+    const lists = mode === 'vote' ? playlists : playlists.slice(1, playlists.length)
+    return (
+      lists?.map(playlist => (
+        <Link 
+          to={{
+            pathname: `/playlist`,
+            state: { playlist }
+          }} 
+          key={`${playlist.id}-tile`}
+        >
+          <PlaylistTile playlist={playlist} />
+        </Link>
+      ))
+    )
+  }
 
   return (
     <>
