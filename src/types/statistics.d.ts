@@ -4,6 +4,7 @@ export type Vote = {
   trackName: string
   updated_at: string
   userId: string
+  submitter?: string
 }
 
 export type Submission = {
