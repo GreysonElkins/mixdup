@@ -25,7 +25,7 @@ const findLabelName = async (trackName: string) => {
   return `${trackName} - ${username}`
 }
 
-const chartLastWeeksVotes = (votes: Vote[]) => {
+export const chartLastWeeksVotes = (votes: Vote[]) => {
   const initialDataSet = {
     labels: [],
     datasets: [
@@ -46,9 +46,4 @@ const chartLastWeeksVotes = (votes: Vote[]) => {
     }
     return { labels, datasets }
   }, initialDataSet)
-}
-
-export const lastWeeksChartData = (votes: Vote[], today: Date) => {
-  const lastWeeksVotes = getLastWeeksVotes(votes, today)
-  return chartLastWeeksVotes(lastWeeksVotes)
 }
