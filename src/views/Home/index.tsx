@@ -27,7 +27,7 @@ const HomePage: React.FC = () => {
     <PlaylistWrapper>
       <div className="HomePage">
         {playlists && <PlaylistGallery playlists={playlists} title="All Mixdup Playlists" />}
-        <StatChart whichChart="last-week" />
+        <StatChart whichChart="last-week" title="Last Week's Votes"/>
       </div>
     </PlaylistWrapper>
   )
