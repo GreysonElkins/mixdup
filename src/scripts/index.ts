@@ -37,7 +37,14 @@ export const dayFromDayNum = (num: Day) => {
 }
 
 export { default as firebase, auth } from './firebase/firebaseConfig'
-export { signIn, disconnectUser } from './firebase/user'
+export {
+  signIn,
+  disconnectUser,
+  getUserName,
+  getUserSubmissions,
+  getSpotifyTokensFromFirebase,
+  saveSpotifyTokensToFirebase,
+} from './firebase/user'
 export { search } from './mixdup/spotify'
 export {
   getPlaylist,
@@ -47,3 +54,6 @@ export {
   getThisWeeksTheme,
 } from './mixdup/playlist'
 export { submitVotes } from './mixdup/votes'
+export { getVotesFromFirebase, getSubmissionFromVote } from './firebase/vote'
+export { lastWeeksChartData } from './statistics/lastWeeksVotes'
+export { parseSubmissionData } from './statistics/myStats'
