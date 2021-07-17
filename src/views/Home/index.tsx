@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { toast } from 'react-toastify' 
 import { faHome } from '@fortawesome/free-solid-svg-icons'
 
+import { StatChart } from 'components'
+import { PlaylistWrapper } from 'style'
 import { getAllPlaylists } from 'scripts'
 import { RouteType, SpotifyPlaylist } from 'types'
 import './HomePage.scss'
@@ -22,9 +24,12 @@ const HomePage: React.FC = () => {
   }, [])
 
   return (
-    <div className="HomePage">
-      {playlists && <PlaylistGallery playlists={playlists} title="All Mixdup Playlists" />}
-    </div>
+    <PlaylistWrapper>
+      <div className="HomePage">
+        {playlists && <PlaylistGallery playlists={playlists} title="All Mixdup Playlists" />}
+        <StatChart whichChart="last-week" />
+      </div>
+    </PlaylistWrapper>
   )
 } 
 
