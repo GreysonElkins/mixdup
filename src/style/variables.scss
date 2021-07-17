@@ -16,14 +16,15 @@ $success: #9EE37D;
 $warn: #F2C14E;
 $error: #e72653;
 
-@mixin card {
-  border-radius: 20px;
-  box-shadow: 2em 3em 10em .01em rgba(0, 0, 0, .2);
-  padding: 1em 2em;
-}
-
 @mixin spin($speed) {
   animation: App-logo-spin infinite $speed linear;
+}
+
+@mixin galleryTitle {
+  width: 90%;
+  margin: 20px 0;
+  font-size: 20px;
+  font-weight: 700;
 }
 
 @mixin clearTextInput {
