@@ -1,16 +1,39 @@
-import { createContext, useContext, useState } from 'react'
-import { firebase, disconnectUser } from 'scripts'
-import type { UserContextType } from 'types'
+import { createContext, useContext, useState, useCallback } from 'react'
+import {
+  firebase,
+  disconnectUser,
+  getSpotifyTokensFromFirebase,
+  saveSpotifyTokensToFirebase,
+} from 'scripts'
+
+import type { UserContextType, SpotifyTokens } from 'types'
+export type UserTokenUpdate = (value: SpotifyTokens, saveToFirebase?: boolean) => void
 
 const UserContext = createContext({} as UserContextType)
 
 export const UserProvider: React.FC = ({ children }) => {
   const [id, setId] = useState<string>('')
+  const [spotify_tokens, setSpotifyTokens] = useState<SpotifyTokens>({
+    access_token: '',
+    refresh_token: '',
+  })
   const [loading, setLoading] = useState<boolean>(true)
+
+  const updateUserTokens = useCallback(
+    (value: SpotifyTokens, saveToFirebase?: boolean) => {
+      setSpotifyTokens(value)
+      if (saveToFirebase && value !== { access_token: '', refresh_token: '' })
+        saveSpotifyTokensToFirebase(id, value)
+    },
+    [id]
+  )
 
   firebase.auth().onAuthStateChanged((user) => {
     setLoading(false)
-    if (!id && user) setId(user.uid)
+    if (!id && user) {
+      setId(user.uid)
+      getSpotifyTokensFromFirebase(user.uid, updateUserTokens)
+    }
   })
 
   const logout = () => {
