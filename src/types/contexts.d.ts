@@ -1,12 +1,5 @@
 import { FixedLengthArray } from "types"
 
-export type SpotifyTokens = {
-  access_token: string
-  refresh_token: string
-}
-
-export type UserTokenUpdate = (value: SpotifyTokens, saveToFirebase?: boolean) => void
-
 export type UserContextType = {
   loading: boolean
   id: string
