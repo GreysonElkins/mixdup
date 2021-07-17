@@ -6,7 +6,7 @@ import { Vote, ChartDataObject } from 'types'
 
 import './StatChartLoader.scss'
 
-const StatChartLoader: React.FC<{ whichChart?: 'last-week' | 'me' }> = ({ whichChart }) => {
+const StatChartLoader: React.FC<{ whichChart?: 'last-week' | 'me', title?: string }> = ({ whichChart, title }) => {
   const [votes, setVotes] = useState<Vote[]>([])
   const [chart, setChart] = useState<Chart>()
   const [loading, setLoading] = useState<boolean>(true)
@@ -51,12 +51,20 @@ const StatChartLoader: React.FC<{ whichChart?: 'last-week' | 'me' }> = ({ whichC
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [whichChart, votes, today, id, loading])
   
-  if (votes.length === 0) return <></>
+  const calculateCanvasWidth = () => {
+    console.log(chartContainer?.current?.clientWidth)
+    return `${chartContainer?.current?.clientWidth}`
+  }
 
+  if (votes.length === 0) return <></>
+  
   return (
-    <div className={`league-stat-chart ${votes.length !== 0 ? '' : 'hidden-chart'}`}>
-      <canvas ref={chartContainer} width="400" height="400" />{' '}
-    </div>
+    <>
+      <h2 className="chart-title">{title}</h2>
+      <div className={`StatChartLoader ${votes.length !== 0 ? '' : 'hidden-chart'}`}>
+        <canvas ref={chartContainer} width={calculateCanvasWidth()} height="200" />{' '}
+      </div>
+    </>
   )
 }
 
