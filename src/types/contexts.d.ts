@@ -10,6 +10,7 @@ export type UserContextType = {
   access_token: string
   refresh_token: string
   updateUserTokens: UserTokenUpdate
+  clearSpotifyTokens: () => void
 }
 
 export type LeagueContextType = {
