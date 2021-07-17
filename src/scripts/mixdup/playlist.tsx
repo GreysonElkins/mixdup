@@ -18,7 +18,7 @@ export const getAllPlaylists = async () => {
 export const getPlaylist = async (playlist_id: string) => {
   try {
     const token = await firebase.auth().currentUser?.getIdToken()
-    if (!token) return toast.dark('You must log in to get all playlists')
+    if (!token) return toast.dark('You must log in to get a playlist')
     const playlistData = await fetch(`${baseUrl}/get-playlist`, {
       method: 'POST',
       headers: {
