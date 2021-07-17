@@ -76,6 +76,13 @@ export const saveSpotifyTokensToFirebase = (id: string, tokens: SpotifyTokens) =
     .set({ ...tokens })
 }
 
+export const clearSpotifyTokensFromFirebase = async (userId: string) => {
+  return await firebase
+    .database()
+    .ref('users/' + userId + '/spotify_tokens')
+    .set({ access_token: '', refresh_token: '' })
+}
+
 export const getSpotifyTokensFromFirebase = (id: string, updateUserTokens: UserTokenUpdate) => {
   firebase
     .database()
