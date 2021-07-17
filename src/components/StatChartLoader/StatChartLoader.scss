@@ -5,7 +5,11 @@
 }
 
 .StatChartLoader {
+  position: relative;
   width: 90%;
+  height: 40%;
+  max-width: 500px;
+  text-align: left;
 }
 
 .hidden-chart {
