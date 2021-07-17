@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Chart, registerables } from 'chart.js'
-import { getVotesFromFirebase, lastWeeksChartData, parseSubmissionData } from 'scripts'
+import { getVotesFromFirebase, chartLastWeeksVotes, parseSubmissionData, getLastWeeksVotes } from 'scripts'
 import { useCalendar, useUser } from 'hooks'
 import { Vote, ChartDataObject } from 'types'
 
-// import './StatChartLoader.scss'
+import './StatChartLoader.scss'
 
 const StatChartLoader: React.FC<{ whichChart?: 'last-week' | 'me' }> = ({ whichChart }) => {
   const [votes, setVotes] = useState<Vote[]>([])
@@ -17,8 +17,10 @@ const StatChartLoader: React.FC<{ whichChart?: 'last-week' | 'me' }> = ({ whichC
   useEffect(() => {
     Chart.register(...registerables)
     getVotesFromFirebase()
-      .then((votes) => setVotes(Object.values(votes)))
-      .catch((error) => console.error(error))
+      .then(votes => {
+        setVotes(Object.values(votes))
+      })
+      .catch(error => console.error(error))
   }, [])
 
   const updateChart = (config: ChartDataObject) => {
@@ -35,7 +37,9 @@ const StatChartLoader: React.FC<{ whichChart?: 'last-week' | 'me' }> = ({ whichC
     if (votes.length === 0 || !chartContainer || !chartContainer.current) return
     chart?.destroy()
     if (whichChart === 'last-week') {
-      const config = lastWeeksChartData(votes, today)
+      const lastWeeksVotes = getLastWeeksVotes(votes, today)
+      if (lastWeeksVotes.length === 0) return setVotes([]) 
+      const config = chartLastWeeksVotes(lastWeeksVotes)
       updateChart(config)
     }
     if (whichChart === 'me') {
@@ -46,9 +50,11 @@ const StatChartLoader: React.FC<{ whichChart?: 'last-week' | 'me' }> = ({ whichC
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [whichChart, votes, today, id, loading])
+  
+  if (votes.length === 0) return <></>
 
   return (
-    <div className={`league-stat-chart ${whichChart ? '' : 'hidden-chart'}`}>
+    <div className={`league-stat-chart ${votes.length !== 0 ? '' : 'hidden-chart'}`}>
       <canvas ref={chartContainer} width="400" height="400" />{' '}
     </div>
   )
