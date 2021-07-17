@@ -37,7 +37,8 @@ export type {
   LeagueContextType,
   CalendarContextType,
   DayAction,
-  ModalContextType
+  ModalContextType,
+  UserTokenUpdate,
 } from './contexts.d'
 
 export type { EffectProps } from 'hooks/useScrollPosition'
@@ -50,4 +51,3 @@ export type {
   ChartDataObject,
   Submission,
 } from './statistics.d'
-export type { UserTokenUpdate } from 'hooks/context/User'
