@@ -56,7 +56,10 @@ export {
 } from './mixdup/playlist'
 export { submitVotes } from './mixdup/votes'
 export { getVotesFromFirebase, getSubmissionFromVote } from './firebase/vote'
-export { lastWeeksChartData } from './statistics/lastWeeksVotes'
+export {
+  getLastWeeksVotes,
+  chartLastWeeksVotes,
+} from './statistics/lastWeeksVotes'
 export { parseSubmissionData } from './statistics/myStats'
 export { getRefreshedAuth, askForSpotifyAuth, getTokensFromSpotify } from './spotify/auth'
 export { followPlaylist } from './spotify/playlist'
