@@ -8,7 +8,7 @@ import './User.scss'
 const allowedAdmins = ['veRac5MSniez7aBV3gZUMTB5yu32']
 
 const UserPage: React.FC = () => {
-  const { id, logout } = useUser()
+  const { id, logout, access_token, clearSpotifyTokens } = useUser()
   const { isAdminMode, setIsAdminMode } = useCalendar()
 
   return (
@@ -18,6 +18,11 @@ const UserPage: React.FC = () => {
           Admin Mode
           <input type="checkbox" checked={isAdminMode} name="admin-mode" readOnly/>
         </label>
+      )}
+      {access_token && (
+        <button className="cta-3" onClick={clearSpotifyTokens}>
+          Disconnect from Spotify
+        </button>
       )}
       <button className="cta-3" onClick={logout}>
         Sign out
