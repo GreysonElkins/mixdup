@@ -1,11 +1,15 @@
 import { toast } from 'react-toastify'
-import { getRefreshedAuth as refreshedAuth, followPlaylist as follow } from 'scripts'
+import { getRefreshedAuth as refreshedAuth, followPlaylist as follow, askForSpotifyAuth } from 'scripts'
 import { useUser } from 'hooks'
 
 export const getRefreshedAuth = refreshedAuth
 
 const useSpotify = () => {
   const { access_token, refresh_token, updateUserTokens } = useUser()
+
+  const checkAuthentication = () => {
+    if (!access_token && !refresh_token) askForSpotifyAuth()
+  }
 
   const checkAction = async (
     result: any,
@@ -22,6 +26,7 @@ const useSpotify = () => {
   }
 
   const followPlaylist = async (playlist_id: string) => {
+    checkAuthentication()
     try {
       const result = await follow(access_token, playlist_id)
       return checkAction(result, follow, playlist_id)
