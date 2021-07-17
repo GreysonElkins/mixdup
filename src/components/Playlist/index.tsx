@@ -18,16 +18,6 @@ type Props = {
 
 const Playlist: React.FC<Props> = ({ playlist }) => {
   const [songs, setSongs] = useState<TrackItem[]>([])
-  // const ref = useRef(null)
-
-  // const [scroll, setScroll] = useState<boolean>(true)
-
-  // const onScroll = ({ currPos, prevPos }: EffectProps) => {
-  //   console.log({ currPos, prevPos })
-  //   setScroll(currPos.y > prevPos.y)
-  // }
-
-  // useScrollPosition({ effect: onScroll, element: ref, deps: [], wait: 500 })
 
   useEffect(() => {
     if (playlist.tracks?.items) {
