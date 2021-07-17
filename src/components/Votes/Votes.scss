@@ -4,7 +4,7 @@
   margin: 10px 0 0;
   padding: 0px 20px 20px;
   position: relative;
-  height: 150px;
+  height: min-content;
 }
 
 .Votes-closed {
@@ -59,4 +59,8 @@
   display: flex;
   justify-content: flex-end;
   margin: 8px 0;
+}
+
+.heard-selector {
+  display: flex;
 }
