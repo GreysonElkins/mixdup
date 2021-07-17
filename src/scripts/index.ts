@@ -44,6 +44,7 @@ export {
   getUserSubmissions,
   getSpotifyTokensFromFirebase,
   saveSpotifyTokensToFirebase,
+  clearSpotifyTokensFromFirebase,
 } from './firebase/user'
 export { search } from './mixdup/spotify'
 export {
@@ -57,5 +58,5 @@ export { submitVotes } from './mixdup/votes'
 export { getVotesFromFirebase, getSubmissionFromVote } from './firebase/vote'
 export { lastWeeksChartData } from './statistics/lastWeeksVotes'
 export { parseSubmissionData } from './statistics/myStats'
-export { getRefreshedAuth } from './spotify/auth'
+export { getRefreshedAuth, askForSpotifyAuth, getTokensFromSpotify } from './spotify/auth'
 export { followPlaylist } from './spotify/playlist'
