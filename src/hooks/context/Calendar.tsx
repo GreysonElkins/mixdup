@@ -1,4 +1,4 @@
-import { createContext, useState, useContext } from 'react'
+import { createContext, useState, useContext, useEffect } from 'react'
 import { CalendarContextType } from 'types'
 
 import { AdminCalendarControl } from 'components'
@@ -9,6 +9,10 @@ export const CalendarProvider: React.FC = ({ children }) => {
   const [dateOverride, setDateOverride] = useState<Date | null>(null)
   const [isAdminMode, setIsAdminMode] = useState<boolean>(false)
   const today = new Date()
+
+  useEffect(() => {
+    if (process.env.NODE_ENV === 'development') setIsAdminMode(true)
+  }, [])
 
   return (
     <CalendarContext.Provider value={{ today: dateOverride || today, isAdminMode, setIsAdminMode }}>
