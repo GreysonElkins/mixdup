@@ -14,7 +14,7 @@ import './Playlist.scss'
 
 type Props = {
   playlist: SpotifyPlaylist
-} 
+}
 
 const Playlist: React.FC<Props> = ({ playlist }) => {
   const [songs, setSongs] = useState<TrackItem[]>([])
@@ -54,4 +54,5 @@ const Playlist: React.FC<Props> = ({ playlist }) => {
   )
 }
 
+export { default as FollowPlaylistButton } from './FollowPlaylistButton'
 export default Playlist
