@@ -36,7 +36,7 @@ const Playlist: React.FC<Props> = ({ playlist }) => {
 
   return (
     <>
-      <PlaylistWrapper>
+      <PlaylistWrapper darkBackground>
         <PlaylistHeader {...playlist} />
         {songs.length > 0 && <PlaylistItems songs={songs}/>}
       </PlaylistWrapper>

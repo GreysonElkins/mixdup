@@ -9,7 +9,7 @@ const Voting: React.FC<{playlist: SpotifyPlaylist}> = ({ playlist }) => {
   const pulledOutTrackItems = playlist.tracks.items?.map(({ track }) => track) || []
 
   return (
-    <PlaylistWrapper>
+    <PlaylistWrapper darkBackground>
       <PlaylistHeader {...playlist} />
       <Votes songs={pulledOutTrackItems} />
       <PlaylistItems songs={pulledOutTrackItems} />
