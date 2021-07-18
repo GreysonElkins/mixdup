@@ -22,8 +22,7 @@ const EmptySearchBin: React.FC = () => {
         {theme && `This weeks theme is "${theme}"`}
         <br /> 
         <br /> 
-        {/* Send in a song before voting starts on {dayFromDayNum(rules[1].start)} */}
-        Send in a song before voting starts on Wednesday
+        Send in a song before voting starts on {dayFromDayNum(rules[0].start)}
       </div>
       <img src="https://media.giphy.com/media/RtIMLBSGzkOZy/giphy.gif" alt="an animated cassette" />
     </div>
