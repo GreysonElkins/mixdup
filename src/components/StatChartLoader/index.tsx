@@ -20,11 +20,24 @@ const StatChartLoader: React.FC<{ whichChart?: 'last-week' | 'me', title?: strin
   const { id } = useUser()
   const chartContainer = useRef<HTMLCanvasElement | null>(null)
 
+  const parseHeardBeforeVotes = (votes: Vote[]) => votes.reduce(
+    (parsedVotes: Vote[], { score, trackName, ...vote }) => {
+      if (Array.isArray(trackName) && score === 0) {
+        trackName.forEach(track => parsedVotes.push({ trackName: track, score, ...vote}))
+      } else {
+        parsedVotes.push({ trackName, score, ...vote })
+      }
+      return parsedVotes
+    }, []
+  )
+
   useEffect(() => {
     Chart.register(...registerables)
     getVotesFromFirebase()
       .then(async votes => {
-        const allVotes = await findSubmitters(Object.values(votes))
+        const lastWeeksVotes = getLastWeeksVotes(Object.values(votes), today)
+        const parsedVotes = parseHeardBeforeVotes(lastWeeksVotes)
+        const allVotes = await findSubmitters(parsedVotes)
         setVotes(allVotes)
       })
       .catch(error => console.error(error))
@@ -87,9 +100,8 @@ const StatChartLoader: React.FC<{ whichChart?: 'last-week' | 'me', title?: strin
     if (votes.length === 0 || !chartContainer || !chartContainer.current) return
     chart?.destroy()
     if (whichChart === 'last-week') {
-      const lastWeeksVotes = getLastWeeksVotes(votes, today)
-      if (lastWeeksVotes.length === 0) return setVotes([]) 
-      const config = chartLastWeeksVotes(lastWeeksVotes)
+      if (votes.length === 0) return
+      const config = chartLastWeeksVotes(votes)
       updateChart(config)
     }
     if (whichChart === 'me') {
@@ -100,12 +112,6 @@ const StatChartLoader: React.FC<{ whichChart?: 'last-week' | 'me', title?: strin
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [whichChart, votes, today, id, loading])
-  
-  const calculateCanvasWidth = () => {
-    console.log(chartContainer?.current?.clientWidth)
-    // return `${(chartContainer?.current?.clientWidth || 150) - 50}`
-    return "10"
-  }
 
   if (votes.length === 0) return <></>
   
@@ -113,7 +119,7 @@ const StatChartLoader: React.FC<{ whichChart?: 'last-week' | 'me', title?: strin
     <>
       <h2 className="chart-title">{title}</h2>
       <div className={`StatChartLoader ${votes.length !== 0 ? '' : 'hidden-chart'}`}>
-        <canvas ref={chartContainer} width={calculateCanvasWidth()} height="7" />{' '}
+        <canvas ref={chartContainer} width="10" height="7" />{' '}
       </div>
     </>
   )
