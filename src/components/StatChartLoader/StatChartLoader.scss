@@ -2,6 +2,7 @@
 
 .chart-title {
   @include galleryTitle;
+  margin-bottom: 10px;
 }
 
 .StatChartLoader {
