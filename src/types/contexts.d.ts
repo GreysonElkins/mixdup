@@ -4,8 +4,9 @@ export type UserTokenUpdate = (value: SpotifyTokens, saveToFirebase?: boolean) =
 
 export type UserContextType = {
   loading: boolean
-  id: string
   isLoggedIn: boolean
+  id: string
+  username: string
   logout: () => void
   access_token: string
   refresh_token: string

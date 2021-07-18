@@ -8,6 +8,7 @@ import {
   saveSpotifyTokensToFirebase,
   getTokensFromSpotify,
   clearSpotifyTokensFromFirebase,
+  getUserName
 } from 'scripts'
 
 import type { UserContextType, SpotifyTokens } from 'types'
@@ -18,6 +19,7 @@ export const UserProvider: React.FC = ({ children }) => {
   const [loading, setLoading] = useState<boolean>(true)
   const [incomingTokens, setIncomingTokens] = useState<boolean>(false)
   const [id, setId] = useState<string>('')
+  const [username, setUsername] = useState<string>('')
   const [spotify_tokens, setSpotifyTokens] = useState<SpotifyTokens>({
     access_token: '',
     refresh_token: '',
@@ -28,6 +30,13 @@ export const UserProvider: React.FC = ({ children }) => {
     setSpotifyTokens(value)
     saveToFirebase && value !== { access_token: '', refresh_token: '' } && setIncomingTokens(true)
   }, [])
+
+  useEffect(() => {
+    if (!id) return setUsername('')
+    getUserName(id)
+      .then(name => setUsername(name))
+      .catch(error => console.error(error))
+  }, [id])
 
   useEffect(() => {
     setTimeout(() => {
@@ -69,8 +78,9 @@ export const UserProvider: React.FC = ({ children }) => {
     <UserContext.Provider
       value={{
         loading,
-        id,
         isLoggedIn: id !== '',
+        id,
+        username,
         logout,
         access_token: spotify_tokens.access_token,
         refresh_token: spotify_tokens.refresh_token,
