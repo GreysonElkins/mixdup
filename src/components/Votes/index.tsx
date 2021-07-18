@@ -83,8 +83,11 @@ const Votes: React.FC<{songs: TrackItem[]}> = ({ songs }) => {
     heard: yup.array().of(
       yup.string()).test('not-voting', "You can't vote for songs you've heard", (value, context) => {
         const { first, second, third } = context.parent
+        const result = [first, second, third].map(vote => {
+          return vote === '' || !vote ? true : !value?.includes(vote) && vote !== ''
+        })
         return (
-          !value?.includes(first) && !value?.includes(second) && !value?.includes(third)
+          result.every(r => r !== false)
         )
       })
   })
@@ -161,7 +164,9 @@ const Votes: React.FC<{songs: TrackItem[]}> = ({ songs }) => {
               <>{renderHeardFields(values.heard, setFieldValue, arrayHelpers)}</>
             )}
           />
-          {Object.values(errors).length > 0 && <div>{printErrors(errors)}</div>}
+          <div className="vote-error">
+            {Object.values(errors).length > 0 && printErrors(errors)}
+          </div>
         </Form>
       )}
     </Formik>

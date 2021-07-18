@@ -1,10 +1,17 @@
 @import 'style/variables.scss';
 
 .Votes {
-  margin: 10px 0 0;
   padding: 0px 20px 20px;
   position: relative;
   height: min-content;
+
+  .vote-error {
+    height: 12px;
+    color: $error;
+    font-size: 12px;
+    margin-top: 8px;
+    margin-bottom: -8px;
+  }
 }
 
 .Votes-closed {
