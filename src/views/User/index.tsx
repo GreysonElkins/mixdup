@@ -8,14 +8,17 @@ import './User.scss'
 const allowedAdmins = ['veRac5MSniez7aBV3gZUMTB5yu32']
 
 const UserPage: React.FC = () => {
-  const { id, logout, access_token, clearSpotifyTokens } = useUser()
+  const { id, username, logout, access_token, clearSpotifyTokens } = useUser()
   const { isAdminMode, setIsAdminMode } = useCalendar()
 
   return (
+    <div className="UserPage">
+    {username && <h1 className="caps">Hello {username} - </h1>}
+    <h1>Welcome to MixDup!</h1>
     <div className="user-controls">
       {allowedAdmins.includes(id) && (
         <label htmlFor="admin-mode" onClick={() => setIsAdminMode(!isAdminMode)}>
-          Admin Mode
+          <span>admin mode</span>
           <input type="checkbox" checked={isAdminMode} name="admin-mode" readOnly/>
         </label>
       )}
@@ -27,6 +30,7 @@ const UserPage: React.FC = () => {
       <button className="cta-3" onClick={logout}>
         Sign out
       </button>
+    </div>
     </div>
   )
 }
