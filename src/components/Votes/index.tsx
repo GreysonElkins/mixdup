@@ -28,7 +28,8 @@ const Selector: React.FC<{
   songs: TrackItem[]
   setFieldValue: (field: string, value: string) => void
   index?: number 
-}> = ({ place, songs, setFieldValue, index }) => {
+  value: string
+}> = ({ place, songs, setFieldValue, index, value }) => {
 
   return (
     <div key={`${place}-select-${index}`} className="vote-selector">
@@ -52,6 +53,7 @@ const Selector: React.FC<{
         onChange={(event) => {
           setFieldValue(place !== 'heard' ? place : `heard[${index}]`, event.target.value)
         }}
+        value={value}
       >
         <option
           value=""
@@ -97,9 +99,9 @@ const Votes: React.FC<{songs: TrackItem[]}> = ({ songs }) => {
     setFieldValue: (field: string, value: any, shouldValidate?: boolean | undefined) => void,
     arrayHelpers: FieldArrayRenderProps
   ) =>
-    heard.map((_, i) => (
-      <div className="heard-selector" key={`heard-selector-${i}`}>
-        <Selector place="heard" songs={songs} setFieldValue={setFieldValue} index={i} />
+    heard.map((song, i) => (
+      <div className="heard-selector" key={i}>
+        <Selector place="heard" songs={songs} value={song} setFieldValue={setFieldValue} index={i} />
         {i === heard.length - 1 ? (
           <div className="vote-right-buttons">
             <button
@@ -117,7 +119,7 @@ const Votes: React.FC<{songs: TrackItem[]}> = ({ songs }) => {
           <button
             className="vote-button submit"
             type="button"
-            onClick={() => arrayHelpers.remove(i)}
+            onClick={() => arrayHelpers.remove(heard.indexOf(song))}
           >
             <FontAwesomeIcon icon={faTimesCircle} color="#707070" />
           </button>
@@ -128,19 +130,36 @@ const Votes: React.FC<{songs: TrackItem[]}> = ({ songs }) => {
   return (
     <Formik
       initialValues={{ first: '', second: '', third: '', heard: [''] }}
-      onSubmit={(values) => submitVotes(id, values, today)}
+      onSubmit={(values) => {
+        submitVotes(id, values, today)
+      }}
       validationSchema={voteRules}
     >
-      {({ values, setFieldValue, errors, touched }) => (
-        <Form className='Votes'>
-          <Selector place={'first'} songs={songs} setFieldValue={setFieldValue} />
-          <Selector place={'second'} songs={songs} setFieldValue={setFieldValue} />
-          <Selector place={'third'} songs={songs} setFieldValue={setFieldValue} />
-          <FieldArray 
-            name="heard" 
+      {({ values, setFieldValue, errors }) => (
+        <Form className="Votes">
+          <Selector
+            place={'first'}
+            songs={songs}
+            setFieldValue={setFieldValue}
+            value={values.first}
+          />
+          <Selector
+            place={'second'}
+            songs={songs}
+            setFieldValue={setFieldValue}
+            value={values.second}
+          />
+          <Selector
+            place={'third'}
+            songs={songs}
+            setFieldValue={setFieldValue}
+            value={values.third}
+          />
+          <FieldArray
+            name="heard"
             render={(arrayHelpers) => (
-            <>{renderHeardFields(values.heard, setFieldValue, arrayHelpers)}</>
-          )}
+              <>{renderHeardFields(values.heard, setFieldValue, arrayHelpers)}</>
+            )}
           />
           {Object.values(errors).length > 0 && <div>{printErrors(errors)}</div>}
         </Form>
