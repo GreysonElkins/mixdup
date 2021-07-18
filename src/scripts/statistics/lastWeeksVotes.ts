@@ -5,7 +5,7 @@ import { Vote, ChartDataObject, Submission } from 'types'
 export const getLastWeeksVotes = (votes: Vote[], today: Date) => {
   const lastSunday = sub(today, { days: getDay(today) })
   const lastTuesday = sub(today, { days: getDay(today) + 5 })
-  return Object.values(votes).filter(({ created_at }: Vote) => {
+  return votes.filter(({ created_at }: Vote) => {
     const made = parseISO(created_at)
     return isAfter(made, lastTuesday) && isBefore(made, lastSunday)
   })
