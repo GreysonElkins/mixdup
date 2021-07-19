@@ -53,11 +53,11 @@ This middleware will be depricated by a graphQL database in the future.
 * npm: (`npm install npm@latest -g`)
 
 ### Instructions:
-
-1. Fork the repo
-2. Clone down the forked repo
-3. `cd` into your local project and run `npm install`
-4. You will need to add the following variables into a `.env` file in the root directory. These values can be created at the Spotify Developer dashboard and with a Firebase account. 
+1. Follow the instructions in the [Mixdup Back End Repo](https://github.com/DupMix/microservice) to run the server side of the app.
+2. Fork the repo
+3. Clone down the forked repo
+4. `cd` into your local project and run `npm install`
+5. You will need to add the following variables into a `.env` file in the root directory. These values can be created at the Spotify Developer dashboard and with a Firebase account. 
 ```
 REACT_APP_MIXDUP_SPOTIFY_CLIENT_ID,
 REACT_APP_SPOTIFY_CLIENT_ID,
